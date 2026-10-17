@@ -37,6 +37,25 @@ Extra touches: a time-budget clock with per-phase targets (10% / 30% / 60% / 80%
    streamlit run streamlit_app.py
    ```
 
+## Deploy on Streamlit Community Cloud (free)
+
+The repo is deploy-ready — [share.streamlit.io](https://share.streamlit.io) → **Create app** → *Deploy a public app from GitHub*:
+
+1. **Repository:** `akash-taurus/sureshot-case-solver`, branch `main`, main file path `streamlit_app.py`.
+2. **Advanced settings** → pick **Python 3.12** (or newer) and paste the **Secrets** (same TOML shape as `.streamlit/secrets.toml`):
+
+   ```toml
+   groq_api_key = "gsk_…"
+   nvidia_api_key = "nvapi-…"
+   ```
+
+3. **Deploy.** First build takes a few minutes.
+
+Two things to know:
+
+- **The key in Secrets is shared by everyone who opens the app** (the app pre-fills it). On a public URL that means your free-tier quota is public too. Either leave `groq_api_key` out and let visitors paste their own key in the sidebar, or keep the URL to yourself.
+- Free apps sleep after prolonged inactivity; the first visit afterwards wakes them in ~30-60s.
+
 ## Using it
 
 1. In the sidebar: confirm key + model (the model list is fetched live from the endpoint; any model id can be typed), set your time budget, team size, and slide limit (0 = auto-detect in Phase 1).
